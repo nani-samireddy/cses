@@ -23,6 +23,17 @@
 		  "isDefault": true
 		},
 		"detail": "compiler: /usr/bin/g++ and run output"
+	  },
+	  {
+		"label": "Create C++ file with boilerplate",
+		"type": "shell",
+		"command": "./.vscode/create_cpp_file.sh",
+		"group": {
+		  "kind": "build",
+		  "isDefault": false
+		},
+		"problemMatcher": [],
+		"detail": "Creates a new C++ file with boilerplate code"
 	  }
 	]
   }
