@@ -4,18 +4,21 @@ using namespace std;
 
 int main(int argc, char const *argv[])
 {
-    long i=0, j=0, n, max_len=1;
+    long i = 0, j = 0, n, max_len = 1;
     string input_str;
     getline(cin, input_str);
 
     n = input_str.length();
 
-    while (j<n)
+    while (j < n)
     {
-        if (input_str[i] == input_str[j]){
-            max_len = max((j-i)+1, max_len);
+        if (input_str[i] == input_str[j])
+        {
+            max_len = max((j - i) + 1, max_len);
             j++;
-        } else {
+        }
+        else
+        {
             i = j;
             j++;
         }

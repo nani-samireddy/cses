@@ -4,18 +4,21 @@
 using namespace std;
 using ll = long long;
 
-void hanoi(vector<pair<int, int>>& arr, int position, int from, int to, int aux){
-    if (position == 1) {
-        arr.push_back({from,to});
+void hanoi(vector<pair<int, int>> &arr, int position, int from, int to, int aux)
+{
+    if (position == 1)
+    {
+        arr.push_back({from, to});
         return;
     }
 
-    hanoi(arr, position-1, from, aux, to);
+    hanoi(arr, position - 1, from, aux, to);
     arr.push_back({from, to});
-    hanoi(arr, position-1, aux, to, from);
+    hanoi(arr, position - 1, aux, to, from);
 }
 
-int main(int argc, char const *argv[]) {
+int main(int argc, char const *argv[])
+{
     ll n;
     cin >> n;
 
@@ -27,7 +30,6 @@ int main(int argc, char const *argv[]) {
     {
         cout << i.first << " " << i.second << endl;
     }
-    
 
     return 0;
 }

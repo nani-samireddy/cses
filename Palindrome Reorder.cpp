@@ -15,27 +15,28 @@ int main(int argc, char const *argv[])
     {
         freq[c]++;
     }
-    string s="",m="",e="";
+    string s = "", m = "", e = "";
     bool isOddCompleted = false;
-    for(auto f : freq ) {
-        if(f.second & 1){
-           if (isOddCompleted){
-            cout << "NO SOLUTION" << endl;
-            return 0;
-           }
+    for (auto f : freq)
+    {
+        if (f.second & 1)
+        {
+            if (isOddCompleted)
+            {
+                cout << "NO SOLUTION" << endl;
+                return 0;
+            }
 
-           m+=f.first;
-           f.second--;
-           isOddCompleted = true;
-        }  
+            m += f.first;
+            f.second--;
+            isOddCompleted = true;
+        }
 
-        s.insert(s.end(), f.second/2 , f.first);
-        e.insert(e.begin(), f.second/2 , f.first);
-        
+        s.insert(s.end(), f.second / 2, f.first);
+        e.insert(e.begin(), f.second / 2, f.first);
     }
 
     cout << s + m + e << endl;
-    
 
     return 0;
 }
