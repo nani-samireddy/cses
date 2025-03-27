@@ -10,19 +10,22 @@ int main(int argc, char const *argv[])
     cin >> t;
     while(t){
 
-        long long x,y,n, base;
-        cin >> x;
-        cin >> y;
+        long long  base, big, small, diagonal;
+        cin >> big;
+        cin >> small;
 
-        n = max(x,y);
-        base = (n - 1) * (n - 1);
+        if ( !(big >= small)) {
+            big+=small;
+            small=big-small;
+            big-=small; 
+        }
 
-        if (n % 2 == 0) {
-            if (y == n) res.push_back( base + x );
-            else res.push_back( n * n - (y - 1) );
+        diagonal = (big - 1) * (big - 1);
+
+        if (big % 2 == 0) {
+            res.push_back( diagonal + (big-small) );
         } else {
-            if (x == n) res.push_back(base + y);
-            else res.push_back(n * n - (x - 1));
+            res.push_back( diagonal - (big-small) );
         }
 
         t--;
