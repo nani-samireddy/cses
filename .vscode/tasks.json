@@ -1,13 +1,21 @@
 {
 	"version": "2.0.0",
+	"inputs": [
+		{
+		  "id": "filename",
+		  "type": "promptString",
+		  "description": "Enter the C++ filename (without extension)",
+		  "default": "main"
+		}
+	  ],
 	"tasks": [
 		{
-			"label": "C/C++: g++ build and run active file",
+			"label": "C/C++: g++ build, run and compare output",
 			"type": "shell",
 			"command": "bash",
 			"args": [
 				"-c",
-				"g++ -std=c++11 \"${file}\" -o \"${fileDirname}/${fileBasenameNoExtension}.out\" && \"${fileDirname}/${fileBasenameNoExtension}.out\" < \"${fileDirname}/input.txt\" > \"${fileDirname}/output.txt\" && rm -f \"${fileDirname}/${fileBasenameNoExtension}.out\""
+				"g++ -std=c++11 \"${fileBasename}\" -o \"${fileBasenameNoExtension}.out\" && \"./${fileBasenameNoExtension}.out\" < input.txt > output.txt && if cmp -s output.txt expected.txt; then echo -e \"\\033[32mTEST CASE PASSED ✅\\033[0m\"; else echo -e \"\\033[31mTEST CASE FAILED ❌\\033[0m\"; fi && rm -f \"${fileBasenameNoExtension}.out\""
 			],
 			"options": {
 				"cwd": "${fileDirname}"
@@ -19,20 +27,37 @@
 				"kind": "build",
 				"isDefault": true
 			},
-			"detail": "compiler: /usr/bin/g++ and run output"
+			"detail": "compiler: /usr/bin/g++, run output and compare with expected.txt",
+			"presentation": {
+				"echo": true,
+				"reveal": "always",
+				"focus": true,
+				"panel": "dedicated",
+				"close": false
+			}
 		}
 		,
-	  {
-		"label": "Create C++ file with boilerplate",
-		"type": "shell",
-		"command": "./.vscode/create_cpp_file.sh",
-		"group": {
-		  "kind": "build",
-		  "isDefault": false
-		},
-		"problemMatcher": [],
-		"detail": "Creates a new C++ file with boilerplate code"
-	  }
+		{
+			"label": "Create C++ file with boilerplate",
+			"type": "shell",
+			"command": "bash",
+			"args": [
+			  "-c",
+			  "cp .vscode/boilerplate.txt \"${input:filename}.cpp\" && code \"${input:filename}.cpp\""
+			],
+			"group": {
+			  "kind": "build",
+			  "isDefault": false
+			},
+			"problemMatcher": [],
+			"presentation": {
+			  "echo": true,
+			  "reveal": "always",
+			  "focus": true,
+			  "panel": "dedicated",
+			  "close": true
+			}
+		  }		
 	]
   }
   

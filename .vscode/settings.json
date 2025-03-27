@@ -2,6 +2,8 @@
     "files.associations": {
         "*.embeddedhtml": "html",
         "*.js": "javascript",
-        "vector": "cpp"
+        "vector": "cpp",
+        "string": "cpp",
+        "map": "cpp"
     }
 }
