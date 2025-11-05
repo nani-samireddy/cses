@@ -43,7 +43,7 @@
 			"command": "bash",
 			"args": [
 			  "-c",
-			  "cp .vscode/boilerplate.txt \"${input:filename}.cpp\" && code \"${input:filename}.cpp\""
+			  "mkdir -p \"${input:filename}\" && cp .vscode/boilerplate.txt \"${input:filename}/main.cpp\" && code \"${input:filename}/main.cpp\" && touch \"${input:filename}/input.txt\" \"${input:filename}/expected.txt\" \"${input:filename}/output.txt\""
 			],
 			"group": {
 			  "kind": "build",
